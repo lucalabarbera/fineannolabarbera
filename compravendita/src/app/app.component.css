@@ -1,0 +1,24 @@
+input {
+  height: 30px;
+  font-size: 15px;
+}
+
+.ng-valid:not(form) {
+  border: 2px solid #42A948;
+}
+
+.ng-invalid:not(form)  {
+  border: 2px solid #a94442;
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  grid-gap: 20px;
+}
+
+.title{
+  text-align:center;
+  color: red;
+
+}

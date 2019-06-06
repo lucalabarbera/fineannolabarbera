@@ -1,0 +1,83 @@
+<div class="container-grid" id="container-grid">
+<h1 class="text-danger mt-5" (click)="logout()">COMPROVENDOPRESTO MOTO.mt </h1>
+<br>
+<br>
+  <div>
+    <div [hidden]="hide">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="p-5">
+        <button class="float-right btn btn-primary m-2" id="btnLogin" (click)="toggleVar()">Login</button>
+        <h2>AGGIUNGI MOTOCICLISTA</h2>
+        <div>
+            <div>
+                Nome
+                <input type="text" class="form-control" onfocus="this.value=''" name="nome" [formControl]="myForm.controls['nome']">
+                <div *ngIf="myForm.controls['nome'].hasError('required')" class="text-danger mt-1">Il nome è richiesto</div>
+            </div>
+            <div>
+                Cognome
+                <input type="text" class="form-control" onfocus="this.value=''" name="cognome" [formControl]="myForm.controls['cognome']">
+                <div *ngIf="myForm.controls['cognome'].hasError('required')" class="text-danger mt-1">Il cognome è richiesto</div>
+            </div>
+        </div>
+
+        <div>
+          Username
+          <input type="text" class="form-control" onfocus="this.value=''" name="username" [formControl]="myForm.controls['username']">
+          <div *ngIf="myForm.controls['username'].hasError('required')" class="text-danger mt-1">L'username è richiesto</div>
+        </div>
+
+        <div>
+          Password
+          <input type="password" class="form-control" onfocus="this.value=''" name="password" [formControl]="myForm.controls['password']">
+          <div *ngIf="myForm.controls['password'].hasError('required')" class="text-danger mt-1">La password è richiesta</div>
+        </div>
+
+        <div>
+          Email
+          <input type="email" class="form-control" onfocus="this.value=''" name="email" [formControl]="myForm.controls['email']">
+          <div *ngIf="myForm.controls['email'].hasError('required')" class="text-danger mt-1">L'email è richiesta</div>
+        </div>
+        <div *ngIf="!myForm.valid" class="text-danger m-3"><h4>Il form non è valido</h4></div>
+        <button class="m-3 btn btn-primary btn-block btn-md w-25 float-right" type="submit" [disabled]="!myForm.valid">Registrati</button>
+      </form>
+    </div>
+
+ <div>
+      <div *ngIf="!listaUtenti">
+        <ul class="mt-5 list-group">
+          <h2>motociclisti registrati</h2>
+          <li *ngFor="let a of utenti" class="list-group-item list-group-item-primary m-1 utenti">{{ a.nome }} {{a.cognome}}</li>
+        </ul>
+      </div>
+  </div>
+
+    <div [hidden]="!hide" class="p-5 mb-2">
+      <form [formGroup]="LoginForm" (ngSubmit)="login(LoginForm.value)" class="p-5">
+        <h2>LOGIN</h2>
+        <div class="form-row m-2">
+            <div class="col">
+                Username
+                <input type="text" class="form-control" onfocus="this.value=''" name="username" [formControl]="LoginForm.controls['username']">
+                <div *ngIf="LoginForm.controls['username'].hasError('required')" class="text-danger mt-1">L'username è richiesto</div>
+            </div>
+            <div class="col">
+                Password
+                <input type="password" class="form-control" onfocus="this.value=''" name="password" [formControl]="LoginForm.controls['password']">
+                <div *ngIf="LoginForm.controls['password'].hasError('required')" class="text-danger mt-1">La password è richiesta</div>
+            </div>
+        </div>
+        <h4 id="loginEffettuato" class="text-center mt-3">LOGIN EFFETTUATO</h4>
+        <button class="m-3 btn btn-primary btn-block btn-md w-25 float-right" type="submit" [disabled]="!LoginForm.valid">Login</button>
+      </form>
+    </div>
+  </div>
+
+
+
+</div>
+<app-post [nomeUtenteOnline]="nomeUtenteOnline" [cognomeUtenteOnline]="cognomeUtenteOnline" [username]="username"></app-post>
+<br>
+<h4 *ngIf="logoutEffettuato" class="text-center m-1">LOGOUT EFFETTUATO</h4>
+
+
+

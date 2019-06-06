@@ -1,0 +1,26 @@
+.ng-valid:not(form) {
+  border: 2px solid rgb(152, 66, 169);
+}
+
+.ng-invalid:not(form)  {
+  border: 2px solid #a9a742;
+}
+
+.container-post {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#post {
+  background-color: rgba(11, 62, 228, 0.904);
+}
+
+#commento {
+  background-color: rgba(128, 128, 128, 0.4);
+  border: 1px rgba(0, 0, 0, 0.4) solid;
+}
+
+#btnCommenta {
+  margin: 10px 0;
+}

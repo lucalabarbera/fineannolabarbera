@@ -1,0 +1,50 @@
+<h1 class="text-center mt-5">MOTO</h1><div class="container-fluid container-post p-3">
+  <div *ngFor="let post of posts" class="border border-success rounded p-4" id="post">
+    <h2 class="d-inline-block">{{post.nome}}</h2>
+    <h4 class="d-inline-block float-right">€ {{post.prezzo}}</h4>
+    <h6>tipo: {{post.tipo}}</h6>
+    <h6>descrizione: {{post.descrizione}}</h6>
+    <h6 class="float-right text-secondary">{{post.username}} ({{post.nomeUtente}} {{post.cognomeUtente}})</h6>
+    <br>
+    <br>
+    <h6 class="text-secondary float-right"><small><b>{{post.data}}</b></small></h6>
+    <br>
+    <br>
+    <div>
+      <input type="text" class="form-control" onfocus="this.value=''" placeholder="Aggiungi commento qui..." #commento>
+      <button class="btn btn-sm btn-dark" id="btnCommenta" (click)="commenta(commento, post)">Commenta</button>
+    </div>
+    <br>
+    <div *ngFor="let commento of post.commenti" class=" rounded p-2 mb-4" id="commento">
+      <h6 class="d-inline-block"><b>{{commento.username}} ({{commento.nomeUtente}} {{commento.cognomeUtente}})</b></h6><p class="d-inline-block float-right"><small><b>{{commento.data}}</b></small></p>
+      <p style="font-size:14px" class="ml-4">{{commento.testo}}</p>
+    </div>
+  </div>
+</div>
+<form id="aggiuntaOggetto" [formGroup]="oggettoForm" (ngSubmit)="aggiungiOggetto(oggettoForm.value)" class="p-5">
+  <h3><b>AGGIUNGI MOTO</b></h3>
+  <div class="form-row m-2">
+      <div class="col">
+          Nome
+          <input type="text" class="form-control" onfocus="this.value=''" name="nome" [formControl]="oggettoForm.controls['nome']">
+          <div *ngIf="oggettoForm.controls['nome'].hasError('required')" class="text-danger mt-1">Il nome è richiesto</div>
+      </div>
+      <div class="col">
+          Tipo
+          <input type="text" class="form-control" onfocus="this.value=''" name="tipo" [formControl]="oggettoForm.controls['tipo']">
+          <div *ngIf="oggettoForm.controls['tipo'].hasError('required')" class="text-danger mt-1">Il tipo è richiesto</div>
+      </div>
+      <div class="col">
+          Prezzo
+          <input type="number" class="form-control" onfocus="this.value=''" name="prezzo" [formControl]="oggettoForm.controls['prezzo']">
+          <div *ngIf="oggettoForm.controls['prezzo'].hasError('required')" class="text-danger mt-1">Il prezzo è richiesto</div>
+      </div>
+  </div>
+  <div class="m-3">
+      Descrizione
+      <input type="text" class="form-control" onfocus="this.value=''" name="descrizione" [formControl]="oggettoForm.controls['descrizione']">
+      <div *ngIf="oggettoForm.controls['descrizione'].hasError('required')" class="text-danger mt-1">La descrizione è richiesta</div>
+  </div>
+  <h4 id="loginPerOggetti" style="display:none">NON HAI EFFETTUATO IL LOGIN</h4>
+  <button class="m-3 btn btn-primary btn-block btn-md w-25 float-right" type="submit" [disabled]="!oggettoForm.valid">Aggiungi</button>
+</form>
